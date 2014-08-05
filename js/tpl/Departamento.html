@@ -1,0 +1,12 @@
+<div id="details" class="span7">
+    <% _.each(usuarios, function(usuarios) { %>
+    <a href="#employees/<%= usuarios.ID %>">
+    <div class="span4 caja">
+        <h3 class="nombre"><%= usuarios.nombre %> <%= usuarios.apellido %></h3>
+        <p class="imagen_perfil"><img src="pics/<%= usuarios.nombre %>_<%= usuarios.apellido %>.jpg" width="160" height="160"/></p>
+        <h4 class="puesto"><%= usuarios.puesto %></h4>
+        <br>
+    </div>
+    </a>
+    <% }); %>
+</div>

@@ -1,0 +1,25 @@
+<div class="row-fluid">
+    <div class="span4">	
+    	<div class="form1">
+		  <h2>Compañia</h2>
+			 <select class="companias">
+				    <% _.each(allcompanias, function(allcompanias) { %>
+							<option value=<%= allcompanias.ID %>><%= allcompanias.nombre %></option>
+				    <% }); %>
+			</select>
+			<select class="paiscompania">
+			</select>
+			<select class="sucursalcompania">
+			</select>
+			<select class="departamentocompania">
+			</select>
+			<input type="text" class="nombrepuesto" placeholder="Nombre del Puesto">
+		</div>
+		<button id="agregarpuesto">+ Agregar</button>
+	</div> 
+	 <div class="span8" id="puestosf">
+	 </div>
+	<div class="span12">
+	<div class="alerta"></div>
+	</div>
+</div>

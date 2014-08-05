@@ -1,0 +1,45 @@
+<div class="row-fluid">
+    <div class="span4">	
+    	<div class="form1">
+		  <h2>Compañia</h2>
+			 <select class="companias">
+				    <% _.each(allcompanias, function(allcompanias) { %>
+							<option value=<%= allcompanias.ID %>><%= allcompanias.nombre %></option>
+				    <% }); %>
+			</select>
+		</div>
+		<div style="display:none" class="form2">
+			  <h2>País de Operación</h2>
+			  <div id="paises">
+			  </div>
+			  <select class="lookoutpais">
+		      </select>
+		</div>
+		 <div style="display:none" class="form3">
+		  <h2>Sucursal</h2>
+			<select class="paiscompania">
+			</select>
+			<input type="text" class="nombres"  placeholder="Nombre de la Sucursal">
+		</div>
+		 <div style="display:none" class="form4">
+		  <h2>Departamento</h2>
+		  	<select class="psucursalcompania">
+			</select>
+			<select class="sucursalcompania">
+			</select>
+			<input type="text" class="nombred"  placeholder="Nombre del Departamento">
+		</div>
+		<button style="display:none" id="Regresar">&lt;-- Regresar</button>
+		<button style="display:none" class="form2" id="agregarp">+ Agregar</button>
+		<button style="display:none" class="form3" id="agregars">+ Agregar</button>
+		<button style="display:none" class="form4" id="agregard">+ Agregar</button>
+		<button id="guardare">Continuar --&gt;</button>
+	</div> 
+	 <div class="span8 form3" id="sucursalesf">
+	 </div>
+	<div class="span8 form4" id="departamentosf">
+	 </div>
+	<div class="span12">
+	<div class="alerta"></div>
+	</div>
+</div>
