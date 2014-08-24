@@ -155,6 +155,7 @@ define(function (require) {
                     if (flag==true){
                         $(".lookoutpais").hide();
                         $("#agregarp").hide();
+                        $("#agregarp").removeClass('form2');
                     }
                   $.each( data.add, function( key, value ) {
                       $('#paises').append( '<h4 id="'+value.ID+'">'+value.nombre+'</h4>');
@@ -167,6 +168,7 @@ define(function (require) {
             });
         },
         changec:function(){
+            $("#agregarp").addClass('form2');
             fetch=0;
             departamentoarray=[];
             paisesarray=[];
@@ -300,6 +302,7 @@ define(function (require) {
         },
 
          close: function(){
+            $("#agregarp").addClass('form2');
             page=0;
             departamentoarray=[];
             paisesarray=[];

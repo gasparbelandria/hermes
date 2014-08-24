@@ -5,7 +5,7 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Backbone            = require('backbone'),
-        EmployeeListView    = require('app/views/EmployeeList'),
+        //EmployeeListView    = require('app/views/EmployeeList'),
         tpl                 = require('text!tpl/Employee.html'),
 
         template = _.template(tpl);
@@ -14,7 +14,7 @@ define(function (require) {
 
         render: function () {
             this.$el.html(template(this.model.attributes));
-                this.model.reports.fetch({
+            /*  this.model.reports.fetch({
                   success: function (data) {
                     if (data.length === 0) {
                         $('.no-reports').show();
@@ -22,7 +22,7 @@ define(function (require) {
                 }
             });
            var listView = new EmployeeListView({collection: this.model.reports, el: $('.report-list', this.el)});
-          listView.render();
+          listView.render();*/
             return this;
         }
     });

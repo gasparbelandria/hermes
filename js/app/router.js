@@ -45,9 +45,14 @@ define(function (require) {
             "contact": "contact",
             "talento": "talento",
             "analisis": "analisis",
+            "hbdi":"hbdi",
+            "papi":"papi",
             "crearcompania": "crearcompania",
             "crearestructura":"crearestructura",
             "crearpuesto":"crearpuesto",
+            "crearusuario":"crearusuario",
+            "resultadop/:id": "resultadop",
+            "resultadoh/:id": "resultadoh",
             "departament/:id": "departament",
             "employees/:id": "employeeDetails"
         },
@@ -84,7 +89,6 @@ define(function (require) {
 
 
         showView: function(view){
-           
           if (this.currentView){
             this.currentView.close();
           }
@@ -115,6 +119,26 @@ define(function (require) {
                 var view = new CrearCView({el: $content});
                 view.render();
                 shellView.selectMenuItem('super-menu');
+            });
+        },
+
+        hbdi: function () {
+            var that = this;
+            require(["app/views/hbdi"], function (CrearCView) {
+                var view = new CrearCView({el: $content});
+                //view.render();
+                 that.showView(view);
+                shellView.selectMenuItem('hbdi-menu');
+            });
+        },
+
+        papi: function () {
+            var that = this;
+            require(["app/views/papi"], function (CrearCView) {
+                var view = new CrearCView({el: $content});
+               // view.render();
+                 that.showView(view);
+                shellView.selectMenuItem('papi-menu');
             });
         },
 
@@ -153,7 +177,20 @@ define(function (require) {
                     shellView.selectMenuItem('puestos-menu');
                 });
         },
-       
+        crearusuario:function(){
+            var that = this;
+                require(["app/views/crearusuario","app/models/allcompania"], function (CrearUView,models) {
+                  var allcompania = new models.AllCompania();
+                  allcompania.fetch({
+                        success: function (data) {
+                            var view = new CrearUView({model:data, el: $content});
+                            //view.render();
+                            that.showView(view);
+                        }
+                    });
+                    shellView.selectMenuItem('usuario-menu');
+                });
+        },
         talento: function () {
             require(["app/views/Talento", "app/models/compania"], function (TalentoView,models) {
                 var compania = new models.Company();
@@ -168,7 +205,31 @@ define(function (require) {
                 shellView.selectMenuItem('talento-menu');
             });
         },
-
+        resultadoh:function (id) {
+            require(["app/views/ResultadoHbdi", "app/models/resultadohbdi"], function (ResultadohView, models) {
+                var resultadohbdi = new models.Resultadohbdi({id: id});
+                resultadohbdi.fetch({
+                    success: function (data) {
+                        var view = new ResultadohView({model: data, el: $content});
+                        view.render();
+                    }
+                });
+                 shellView.selectMenuItem('talento-menu');
+            });
+        },
+        
+        resultadop:function (id) {
+           require(["app/views/ResultadoPapi", "app/models/resultadopapi"], function (ResultadopView, models) {
+                var resultadopapi = new models.Resultadopapi({id: id});
+                resultadopapi.fetch({
+                    success: function (data) {
+                        var view = new ResultadopView({model: data, el: $content});
+                        view.render();
+                    }
+                });
+                 shellView.selectMenuItem('talento-menu');
+            });
+        },
         departament: function (id) {
             require(["app/views/Departamento", "app/models/departamento"], function (DepartamentoView, models) {
                 var departamento = new models.Departamento({id: id});

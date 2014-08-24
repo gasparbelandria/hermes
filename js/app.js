@@ -12,6 +12,8 @@ require.config({
             'app/models/employee': 'app/models/jsonp/employee',
             'app/models/departamento': 'app/models/jsonp/departamento',
             'app/models/compania': 'app/models/jsonp/compania',
+            'app/models/resultadohbdi': 'app/models/jsonp/resultadohbdi',
+            'app/models/resultadopapi': 'app/models/jsonp/resultadopapi',
             'app/models/allcompania': 'app/models/jsonp/allcompania'
         }
     },

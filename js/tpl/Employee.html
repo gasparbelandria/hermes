@@ -1,7 +1,7 @@
 <div id="details" class="span7">
     <p><img src="pics/<%= nombre %>_<%= apellido %>.jpg" width="160" height="160"/></p>
     <h3><%= nombre %> <%= apellido %></h3>
-    <h4><%= puesto %></h4>
+    <h4><%= puestonombre %></h4>
     <br>
     <table class="table table-striped">
         <tr>
@@ -20,16 +20,13 @@
 
     <div class="alert alert-warning">
         <h4 class="alert-heading">Warning</h4>
-        The phone numbers, email addresses, and Twitter handlers are fake.
     </div>
+
 </div>
 <div class="span5">
     <div class="well">
-        <h3 class="modal-header">Direct Reports</h3>
-        <ul class="nav nav-list report-list"></ul>
-        <div class="alert alert-info no-reports">
-            <h4 class="alert-heading">Info</h4>
-            <%= nombre %> <%= apellido %> has no direct reports
-        </div>
+        <h3 class="modal-header">Tests</h3>
+          <a href="#resultadop/<%= ID %>">P.A.P.I.</a><br>
+          <a href="#resultadoh/<%= ID %>">H.B.D.I.</a>
     </div>
 </div>

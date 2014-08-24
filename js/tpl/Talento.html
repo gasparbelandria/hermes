@@ -1,5 +1,8 @@
 <div class="row-fluid">
     <h1>Talento Humano</h1>
+    <div class="span12">
+    	<div class="alerta"></div>
+    </div>
 	<div class="talento-humano row-fluid">
 	    <div class="span4 text-center">
 	    	 <h4 style="margin: 15px 0;">Pais:</h4>
@@ -10,22 +13,16 @@
 
 		    <select class="dynamicdrop pais">
 		  	    <% _.each(pais, function(pais) { %>
-				    <option value=<%= pais.pais_id %>><%= pais.nombre %></option>
+				    <option value=<%= pais.ID %>><%= pais.nombre %></option>
 				<% }); %>
 			</select>
 		    <select class="dynamicdrop sucursal">
-		  	    <% _.each(sucursal, function(sucursal) { %>
-				    <option value=<%= sucursal.sucursal_id %>><%= sucursal.nombre %></option>
-				<% }); %>
 			</select>
 			<select class="dynamicdrop departamento">
-		  	    <% _.each(departamento, function(departamento) { %>
-				    <option value=<%= departamento.departamento_id %>><%= departamento.nombre %></option>
-				<% }); %>
 			</select>
 	    </div>
 	    <div class="span4 text-center">
-	    	<button id="tarjeta">Ver Grupo</button>
+	    	<button class="alt-1" id="tarjeta">Ver Grupo</button>
 	    </div>
 	</div>
 

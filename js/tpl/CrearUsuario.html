@@ -1,0 +1,89 @@
+<div class="row-fluid">
+	<div class="span12">
+		<div class="alerta"></div>
+	</div>
+    <div class="span3">	
+    	<div class="form1">
+		  <h2>Menu</h2>
+		  	<label >Compañia: </label>
+			 <select class="companias">
+				    <% _.each(allcompanias, function(allcompanias) { %>
+							<option value=<%= allcompanias.ID %>><%= allcompanias.nombre %></option>
+				    <% }); %>
+			</select>
+			<label >Pais: </label>
+			<select class="paiscompania">
+			</select>
+			<label >Sucursal: </label>
+			<select class="sucursalcompania">
+			</select>
+			<label >Departamento: </label>
+			<select class="departamentocompania">
+			</select>
+			<label >Puesto: </label>
+			<select class="puestocompania">
+			</select>
+			 <label >Nivel de Authorizacion: </label>
+	              <select id="type">
+	              		<option value="3">Empleado</option>
+	              		<option value="2">Gerente</option>
+	              		<option value="1">Administrador</option>
+	              <select>
+			</div>
+		<button class="alt-1" id="agregarusuario">Agregar</button>
+	</div> 
+	 <div class="span4" id="formulario">
+	 	<h2>Informacion Principal</h2>
+	    <label for="nombre">Nombre: </label>
+	              <input type="text" id="nombre"><br>
+	    <label for="apellido">Apellido: </label>
+	              <input type="text" id="apellido"><br>
+	    <label for="usuario">Usuario: </label>
+	              <input type="text" id="usuario"><br>
+	     <label for="contrasena">Contraseña: </label>
+	              <input type="password" id="contrasena"><br>
+	    <label for="cedula">Cedula: </label>
+	              <input type="text" id="cedula"><br>
+	    <label for="fechanacimiento">Fecha Nacimiento: </label>
+	              <input type="date" id="fechanacimiento"><br>
+	 </div>
+	 <div class="span4" id="formulario1">
+	 	<h2>Perfil de Usuario</h2>
+		    <label for="hijos">Hijos: </label>
+		              <input type="number" id="hijos" min="0" max="99"><br>
+		    <label for="estadocivil">Estado Civil: </label>
+		              <select id="estadocivil">
+		              		<option value="0">Soltero</option>
+		              		<option value="1">Union Libre</option>
+		              		<option value="2">Casado</option>
+		              <select>
+		      <label for="estadoactual">Estado Actual: </label>
+		              <select id="estadoactual">
+		              		<option value="0">Activo</option>
+		              		<option value="1">Vacaciones</option>
+		              		<option value="2">Embarazo</option>
+		              <select>
+		    <label for="peso">Peso: </label>
+		              <input type="number" id="peso" min="0" max="500"><br>
+		    <label for="altura">Altura: </label>
+		              <input type="number" id="altura" min="0" max="5" step="any"><br>
+		    <label for="fechaentrada">Fecha Entrada: </label>
+	              <input type="date" id="fechaentrada"><br>
+		    <label for="domicilio1">Domicilio 1: </label>
+		              <input type="text" id="domicilio1"><br>
+		    <label for="domicilio2">Domicilio 2: </label>
+		              <input type="text" id="domicilio2"><br>
+		    <label for="telefono1">Telefono 1: </label>
+		              <input type="text" id="telefono1"><br>
+		    <label for="telefono2">Telefono 2: </label>
+		              <input type="text" id="telefono2"><br>
+		    <label for="mobil1">Mobil 1: </label>
+		              <input type="text" id="mobil1"><br>
+		    <label for="mobil2">Mobil 2: </label>
+		              <input type="text" id="mobil2"><br>
+		    <label for="correocop">Correo Corporativo: </label>
+		              <input type="email" id="correocop"><br>
+		    <label for="correoperso">Correo Personal: </label>
+		              <input type="email" id="correoperso"><br>
+	 <div>
+</div>

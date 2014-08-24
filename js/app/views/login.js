@@ -44,12 +44,14 @@ define(function (require) {
                     $('.alert-error').text(data.error.text).show();
                 }
                 else { // If not, send them back to the home page
-                    sessionStorage.setItem("ID", data['ID']);
-                    sessionStorage.setItem("nombre", data['nombre']);
-                    sessionStorage.setItem("apellido", data['apellido']);
-                    sessionStorage.setItem("user", data['user']);
-                    sessionStorage.setItem("compania", data['compania']);
-                    sessionStorage.setItem("type", data['type']);
+                     sessionStorage.setItem("ID", data['ID']);
+                     sessionStorage.setItem("nombre", data['nombre']);
+                     sessionStorage.setItem("apellido", data['apellido']);
+                     sessionStorage.setItem("user", data['user']);
+                     sessionStorage.setItem("compania", data['compania']);
+                     sessionStorage.setItem("type", data['type']);
+                     sessionStorage.setItem("hbdi", data['hbdi']);
+                     sessionStorage.setItem("papi", data['papi']);
                     if(data['type']==1){
                       $(".admin").show();
                        window.location.replace('#muro');

@@ -19,22 +19,24 @@ define(function (require) {
             dataType:"json",
             success:function (data) {
                 if (data!=false){
-                    window.session=data;
+                    //window.session=data;
                      sessionStorage.setItem("ID", data['ID']);
                      sessionStorage.setItem("nombre", data['nombre']);
                      sessionStorage.setItem("apellido", data['apellido']);
                      sessionStorage.setItem("user", data['user']);
                      sessionStorage.setItem("compania", data['compania']);
                      sessionStorage.setItem("type", data['type']);
+                     sessionStorage.setItem("hbdi", data['hbdi']);
+                     sessionStorage.setItem("papi", data['papi']);
                     if(data['type']==1){
                       $(".admin, .navbar-search").show();
                       window.location.replace('#'+Backbone.history.fragment);
                     }else if(data['type']==3){
-                        $(".emple").show();
-                        window.location.replace('#'+Backbone.history.fragment);
+                      $(".emple").show();
+                      window.location.replace('#'+Backbone.history.fragment);
                     }else if(data['type']==4){
-                        $(".super").show();
-                        window.location.replace('#'+Backbone.history.fragment);
+                       $(".super").show();
+                       window.location.replace('#'+Backbone.history.fragment);
                     }
                     $(".login-menu ").hide();
                     $(".logout-menu").show();
