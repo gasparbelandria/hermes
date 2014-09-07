@@ -50,7 +50,9 @@ define(function (require) {
             "crearcompania": "crearcompania",
             "crearestructura":"crearestructura",
             "crearpuesto":"crearpuesto",
+            "crearpuestos":"crearpuestos",
             "crearusuario":"crearusuario",
+            "crearusuarios":"crearusuarios",
             "resultadop/:id": "resultadop",
             "resultadoh/:id": "resultadoh",
             "departament/:id": "departament",
@@ -188,7 +190,25 @@ define(function (require) {
                             that.showView(view);
                         }
                     });
-                    shellView.selectMenuItem('usuario-menu');
+                    shellView.selectMenuItem('usuarios-menu');
+                });
+        },
+        crearusuarios:function(){
+            var that = this;
+                require(["app/views/crearusuarios"], function (CrearUView) {
+                    var view = new CrearUView({el: $content});
+                    //view.render();
+                    that.showView(view);
+                    shellView.selectMenuItem('cusuarios-menu');
+                });
+        },
+        crearpuestos:function(){
+            var that = this;
+                require(["app/views/crearpuestos"], function (CrearPView) {
+                    var view = new CrearPView({el: $content});
+                    //view.render();
+                    that.showView(view);
+                    shellView.selectMenuItem('cpuestos-menu');
                 });
         },
         talento: function () {

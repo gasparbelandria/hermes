@@ -6,7 +6,7 @@ define(function (require) {
         _           = require('underscore'),
         Backbone    = require('backbone'),
         image       = require('croppic.min'),
-        tpl         = require('text!tpl/CrearUsuario.html'),
+        tpl         = require('text!tpl/CrearUsuarios.html'),
         puestosarray=[],
         paisesarray =[],
         sucursalarray =[],
@@ -49,7 +49,7 @@ define(function (require) {
                 $('.sucursalcompania').html('');
                 $('.departamentocompania').html('');
                 $('#puestosf').html('');
-                companyv=$(".companias option:selected" ).val();
+                companyv=window.sessionStorage['compania'];
                 this.getPaises();
         },
         getImageURL:function(){
@@ -367,7 +367,7 @@ define(function (require) {
         },
 
         render: function () {
-            this.$el.html(template({allcompanias:this.model.attributes}));
+            this.$el.html(template());
             this.navigate();
             return this;
         },

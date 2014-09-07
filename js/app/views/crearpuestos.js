@@ -5,16 +5,16 @@ define(function (require) {
     var $           = require('jquery'),
         _           = require('underscore'),
         Backbone    = require('backbone'),
-        image       = require('croppic.min'),
-        tpl         = require('text!tpl/CrearUsuario.html'),
+        tpl         = require('text!tpl/CrearPuestos.html'),
         puestosarray=[],
         paisesarray =[],
         sucursalarray =[],
         departamentoarray=[],
+        puestovariablearray={},
         paisname    ="",
         companyv    =0,
         feedd       =0,
-        isDisabled = false,
+        completed   =1,
         template = _.template(tpl);
 
     return Backbone.View.extend({
@@ -25,21 +25,10 @@ define(function (require) {
             "change .paiscompania":"changeSucursal",
             "change .sucursalcompania":"changeDepartamento",
             "change .companias": "navigate",
-            "click #agregarusuario": "agregarusuario"
+            "click #agregarpuesto": "agregarpuesto"
         },
+
         navigate:function(){
-               var that=this;
-               var croppicHeaderOptions = {
-                        uploadUrl:'api/sImage',
-                        cropUrl:'api/cImage',
-                        customUploadButtonId:'cropContainerProfileButton',
-                        outputUrlId:'imagen',
-                        modal:false,
-                        onAfterImgCrop:function(){
-                            that.getImageURL();
-                        }
-                }   
-                var cropperHeader = new Croppic('profilepic', croppicHeaderOptions);  
                 puestosarray=[];
                 departamentoarray=[];
                 paisesarray=[];
@@ -49,14 +38,8 @@ define(function (require) {
                 $('.sucursalcompania').html('');
                 $('.departamentocompania').html('');
                 $('#puestosf').html('');
-                companyv=$(".companias option:selected" ).val();
+                companyv=window.sessionStorage['compania'];
                 this.getPaises();
-        },
-        getImageURL:function(){
-             var data = $('#imagen').val(),
-                 arr = data.split('/'),
-                 last_element = arr[arr.length - 1]; 
-            $('#imagen').val(last_element);
         },
         changePais:function(){
              var flag=false,
@@ -134,6 +117,8 @@ define(function (require) {
                 });
             if (flag==false){
                 $('.departamentocompania').prop('disabled', true);
+                $('.nombrepuesto').prop('disabled', true);
+                $('.descripcionpuesto').prop('disabled', true);
                 var randomnum = Math.ceil(Math.random() * 1000000),
                 append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-error" ><h3>Esta Sucursal no tiene Departamentos</h3></div>';
                 $('.alerta').append(append);
@@ -142,37 +127,19 @@ define(function (require) {
                 }, 1500);
             }else{
                 $('.departamentocompania').prop('disabled', false);
+                $('.nombrepuesto').prop('disabled', false);
+                $('.descripcionpuesto').prop('disabled', false);
             }
         },
 
         changePuestos:function(){
             feedd=1;
-             var flag=false,
-                that=this;
-            $('.puestocompania').html('');
+            $('#puestosf').html('');
             $.each(puestosarray,function(key,value){
                  if ($('.departamentocompania option:selected').val() == value.departamentoid){
-                         flag=true;
-                         $('.puestocompania').append('<option value='+value.ID+'>'+value.nombre+'</option>');
+                        $('#puestosf').append('<h4 id='+value.ID+'>'+value.nombre+'</h4>');
                    }
             });
-             if (flag==false){
-                isDisabled = true;
-                $("#formulario1 :input").attr("disabled", true);
-                $("#formulario :input").attr("disabled", true);
-                $('.puestocompania,#type').prop('disabled', true);
-                var randomnum = Math.ceil(Math.random() * 1000000),
-                append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-error" ><h3>Este Departamento no tiene Puestos</h3></div>';
-                $('.alerta').append(append);
-                setTimeout( function() {    
-                  $('#'+randomnum).fadeOut();
-                }, 1500);
-            }else{
-                isDisabled = false;
-                $("#formulario1 :input").attr("disabled", false);
-                $("#formulario :input").attr("disabled", false);
-                $('.puestocompania,#type').prop('disabled', false);
-            }
         },
 
         getDepartamentos:function(){
@@ -286,88 +253,78 @@ define(function (require) {
                  that.changePuestos();
             });
         },
-        
-        agregarusuario:function(){
-            if (isDisabled==false){
-                var url = 'api/createuser',
-                type=$( "#type option:selected" ).val(),
-                puesto = $( ".puestocompania option:selected" ).val(),
-                departamento = $( ".departamentocompania option:selected" ).val(),
-                nombre=$('#nombre').val(),
-                apellido=$('#apellido').val(),
-                cedula=$('#cedula').val(),
-                contrasena=$('#contrasena').val(),
-                usuario=$('#usuario').val(),
-                fechanacimiento=$('#fechanacimiento').val(),
-                hijos=$('#hijos').val(),
-                estadocivil=$('#estadocivil option:selected').val(),
-                estadoactual=$('#estadoactual option:selected').val(),
-                peso=$('#peso').val(),
-                altura=$('#altura').val(),
-                domicilio1=$('#domicilio1').val(),
-                domicilio2=$('#domicilio2').val(),
-                telefono1=$('#telefono1').val(),
-                telefono2=$('#telefono2').val(),
-                mobil1=$('#mobil1').val(),
-                mobil2=$('#mobil2').val(),
-                correocop=$('#correocop').val(),
-                fechaentrada=$('#fechaentrada').val(),
-                correoperso=$('#correoperso').val();
-
+        validarcampos:function() {
+            puestovariablearray={};
+            var variables = ["N","G","A","L","P","I","T","V","X","S","B","O","R","D","C","Z","E","K","F","W"];
+            $.each(variables,function(key,value){
+                puestovariablearray[value+"_min"]= $("#"+value+"_min").val();
+                puestovariablearray[value+"_max"]= $("#"+value+"_max").val();
+                puestovariablearray[value+"_limite"]= $("#"+value+"_limite").val();
+                if (($("#"+value+"_min").val() == "")||($("#"+value+"_max").val() == "")||($("#"+value+"_limite").val() == "")){
+                    completed=0;
+                }
+            });
+            if (($(".nombrepuesto").val() == "")||($(".descripcionpuesto").val() == "")){
+              completed=0;
+            }
+        },
+        agregarpuesto:function(){
+            this.validarcampos();
+            if (completed === 1){
+                 var url = 'api/createpuesto',
+                 departamentoid = $( ".departamentocompania option:selected" ).val(),
+                        nombrep=$('.nombrepuesto').val(),
+                        descripcion=$('.descripcionpuesto').val();
                     var formValues = {
                         companiaid: companyv,
-                        departamento:departamento,
-                        type:type,
-                        puesto: puesto,
-                        nombre:nombre,
-                        apellido:apellido,
-                        cedula:cedula,
-                        password:contrasena,
-                        usuario:usuario,
-                        fechanacimiento:fechanacimiento,
-                        hijos:hijos,  
-                        estadocivil:estadocivil,
-                        estadoactual:estadoactual,
-                        peso:peso,
-                        altura:altura,
-                        domicilio1:domicilio1,
-                        domicilio2:domicilio2,
-                        telefono1:telefono1,
-                        telefono2:telefono2,
-                        mobil1:mobil1,
-                        mobil2:mobil2,
-                        fechaentrada:fechaentrada,
-                        correocop:correocop,
-                        correoperso:correoperso
+                        departamentoid: departamentoid,
+                        nombre:nombrep,
+                        descripcion:descripcion
                     };
-
                     $.ajax({
                         url:url,
                         type:'POST',
                         dataType:"json",
                         data: formValues,
                         success:function (data) {
-                            var randomnum = Math.ceil(Math.random() * 1000000),
-                            append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-success" ><h3>'+nombre+" ha sido agregado como empleado al Puesto"+'</h3></div>';
+                           $('#puestosf').append('<h4 id='+data.id+'>'+nombrep+'</h4>');
+                           puestosarray.push({
+                                departamentoid: departamentoid,
+                                ID:data.id,
+                                nombre: nombrep
+                            });
+                            console.log(puestovariablearray);
+                              var url = 'api/finishpuesto';
+                                $.ajax({
+                                        url:url,
+                                        type:'POST',
+                                        dataType:"json",
+                                        data: {puestohbdi:puestovariablearray,puestoid:data.id},
+                                        success:function (data) {
+                                    }
+                              });
+                           var randomnum = Math.ceil(Math.random() * 1000000),
+                            append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-success" ><h3>'+nombrep+" ha sido agregado como Puesto a su Departamento"+'</h3></div>';
                             $('.alerta').append(append);
                             setTimeout( function() {    
                               $('#'+randomnum).fadeOut();
                             }, 1500);
-                            $("input").val("");
+                            $("input ,textarea").val("");
                         }
                     });
             }else{
                 var randomnum = Math.ceil(Math.random() * 1000000),
-                append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-error" ><h3>Necesitas Eleguir un Puesto para crear un Usuario</h3></div>';
+                append =  '<div style="text-align:center;" id="'+randomnum+'"class="alert alert-error" ><h3>Necesitas llenar todos los campos</h3></div>';
                 $('.alerta').append(append);
                 setTimeout( function() {    
                   $('#'+randomnum).fadeOut();
                 }, 1500);
             }
+            completed=1;
         },
 
         render: function () {
-            this.$el.html(template({allcompanias:this.model.attributes}));
+            this.$el.html(template());
             this.navigate();
             return this;
         },

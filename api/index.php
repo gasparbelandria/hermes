@@ -80,17 +80,30 @@ function cropImage(){
     }
         
         $resizedImage = imagecreatetruecolor($imgW, $imgH);
+        imagesavealpha( $resizedImage, true );
+        $trans_colour = imagecolorallocatealpha($resizedImage, 0, 0, 0, 127);
+        imagefill($resizedImage, 0, 0, $trans_colour);
         imagecopyresampled($resizedImage, $source_image, 0, 0, 0, 0, $imgW, 
                     $imgH, $imgInitW, $imgInitH);   
         
         
         $dest_image = imagecreatetruecolor($cropW, $cropH);
+        imagesavealpha(  $dest_image, true );
+        $trans_colour = imagecolorallocatealpha($dest_image, 0, 0, 0, 127);
+        imagefill($dest_image, 0, 0, $trans_colour);
         imagecopyresampled($dest_image, $resizedImage, 0, 0, $imgX1, $imgY1, $cropW, 
                     $cropH, $cropW, $cropH);    
 
 
-        imagejpeg($dest_image, $output_filename.$type, $jpeg_quality);
-        
+       
+         switch(strtolower($what['mime']))
+    {
+        case 'image/png':
+            imagepng($dest_image, $output_filename.$type);
+            break;
+
+        default: imagejpeg($dest_image, $output_filename.$type, $jpeg_quality);
+    }
         $response = array(
                 "status" => 'success',
                 "url" => $output_filename1.$type 

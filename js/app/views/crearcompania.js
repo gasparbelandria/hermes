@@ -18,16 +18,25 @@ define(function (require) {
         events: {
             "click #guardarc": "guardarc"
         },
-        navigate:function(){   
+        navigate:function(){
+             var that=this;   
              var croppicHeaderOptions = {
                     uploadUrl:'api/sImage',
                     cropUrl:'api/cImage',
-                    //loaderHtml:'<img class="loader" src="img/loader.gif" >',
                     customUploadButtonId:'cropContainerHeaderButton',
                     outputUrlId:'logo',
-                    modal:false
+                    modal:false,
+                        onAfterImgCrop:function(){
+                            that.getImageURL();
+                        }
             }   
             var cropperHeader = new Croppic('croppic', croppicHeaderOptions);      
+        },
+        getImageURL:function(){
+             var data = $('#logo').val(),
+                 arr = data.split('/'),
+                 last_element = arr[arr.length - 1]; 
+            $('#logo').val(last_element);
         },
         validate:function(){
             continuecompany=1;
