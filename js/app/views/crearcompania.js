@@ -6,7 +6,7 @@ define(function (require) {
         _           = require('underscore'),
         Backbone    = require('backbone'),
         image       = require('croppic.min'),
-        tpl         = require('text!tpl/CrearCompania.html'),
+        tpl         = require('text!tpl/crearcompania.html'),
         sucursalv   = 0,
         paisesv     = 0,
         paisesarray =[],

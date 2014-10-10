@@ -6,7 +6,7 @@ define(function (require) {
         _           = require('underscore'),
         Backbone    = require('backbone'),
         Chart       = require('Chart.min'),
-        tpl         = require('text!tpl/ResultadoHbdi.html'),
+        tpl         = require('text!tpl/resultadohbdi.html'),
 
         template = _.template(tpl);
 

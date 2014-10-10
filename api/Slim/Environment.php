@@ -92,7 +92,7 @@ class Environment implements \ArrayAccess, \IteratorAggregate
             'SCRIPT_NAME' => '',
             'PATH_INFO' => '',
             'QUERY_STRING' => '',
-            'SERVER_NAME' => 'localhost',
+            'SERVER_NAME' => 'http://loghermes.com/',
             'SERVER_PORT' => 80,
             'ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'ACCEPT_LANGUAGE' => 'en-US,en;q=0.8',

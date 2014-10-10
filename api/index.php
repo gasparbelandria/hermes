@@ -57,7 +57,7 @@ function cropImage(){
     $jpeg_quality = 100;
     $hashrand=rand();
     $output_filename = "../pics/croppedImg_".$hashrand;
-    $output_filename1 = "http://localhost:8888/hermes/pics/croppedImg_".$hashrand;
+    $output_filename1 = "http://loghermes.com/pics/croppedImg_".$hashrand;
     $what = getimagesize($imgUrl);
     switch(strtolower($what['mime']))
     {
@@ -114,7 +114,7 @@ function cropImage(){
 function saveImage(){
     $hashrand=rand();
     $imagePath = "../pics/";
-    $imagePath1 = "http://localhost:8888/hermes/pics/";
+    $imagePath1 = "http://loghermes.com/pics/";
     $allowedExts = array("gif", "jpeg", "jpg", "png", "GIF", "JPEG", "JPG", "PNG");
     $temp = explode(".", $_FILES["img"]["name"]);
     $extension = end($temp);
@@ -159,14 +159,20 @@ function saveImage(){
 }
 
 function getDepartment($id){
-        $usuarios = "SELECT usuarios.ID,usuarios.nombre, usuarios.apellido, usuarios.puesto,puestos.nombre as puestonombre FROM usuarios " .
+        $usuarios = "SELECT usuarios.ID,usuarios.nombre, usuarios.apellido, usuarios.puesto,puestos.nombre as puestonombre,puestos.deleted FROM usuarios " .
            "LEFT JOIN puestos ON usuarios.puesto = puestos.ID WHERE puestos.departamento_id= ".$id.
-           " AND puestos.compania_id= ".$_SESSION['compania'];
+           " AND puestos.deleted = 0 AND puestos.compania_id= ".$_SESSION['compania'];
+        $puestos = "SELECT COUNT(DISTINCT ID) as puesto FROM puestos WHERE departamento_id= ".$id." AND deleted=0";
         // Include support for JSONP requests
         try {
         $db = getConnection();
-        $stmt = $db->query($usuarios);
+        $stmt = $db->query($usuarios); 
+        $stmt1 = $db->query($puestos);  
         $usuarios = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $numrows = count($usuarios);  
+        $usuarios['cantidad'] = $numrows;
+        $puestos = $stmt1->fetchAll(PDO::FETCH_OBJ);
+        $usuarios['puesto'] = $puestos[0]->puesto;
         $db = null;
 
         // Include support for JSONP requests
@@ -858,8 +864,8 @@ function createDepartamento(){
 function getConnection() {
     $dbhost="localhost";
     $dbuser="doktordan10";
-    $dbpass="wolverinex";
-    $dbname="hermes";
+    $dbpass="Wolverinex";
+    $dbname="hermes1";
     $dbh = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass);  
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbh;

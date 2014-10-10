@@ -6,7 +6,7 @@ define(function (require) {
         _                   = require('underscore'),
         Backbone            = require('backbone'),
         //EmployeeListView    = require('app/views/EmployeeList'),
-        tpl                 = require('text!tpl/Employee.html'),
+        tpl                 = require('text!tpl/employee.html'),
 
         template = _.template(tpl);
 

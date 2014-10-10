@@ -6,7 +6,7 @@ define(function (require) {
         _           = require('underscore'),
         Backbone    = require('backbone'),
         Chart       = require('Chart.min'),
-        tpl         = require('text!tpl/ResultadoPapi.html'),
+        tpl         = require('text!tpl/resultadopapi.html'),
 
         template = _.template(tpl);
 

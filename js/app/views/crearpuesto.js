@@ -5,7 +5,7 @@ define(function (require) {
     var $           = require('jquery'),
         _           = require('underscore'),
         Backbone    = require('backbone'),
-        tpl         = require('text!tpl/CrearPuesto.html'),
+        tpl         = require('text!tpl/crearpuesto.html'),
         puestosarray=[],
         paisesarray =[],
         sucursalarray =[],

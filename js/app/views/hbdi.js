@@ -5,7 +5,7 @@ define(function (require) {
     var $           = require('jquery'),
         _           = require('underscore'),
         Backbone    = require('backbone'),
-        tpl         = require('text!tpl/Hbdi.html'),
+        tpl         = require('text!tpl/hbdi.html'),
         pageh        = 1,
         questionsh   = [],
         resultadoh   = [],

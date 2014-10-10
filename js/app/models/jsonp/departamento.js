@@ -8,7 +8,7 @@ define(function (require) {
         Departamento = Backbone.Model.extend({
 
 //            urlRoot: "http://localhost:3000/employees",
-            urlRoot: "/Hermes/api/departamento",
+            urlRoot: "api/departamento",
 
             initialize: function () {
                 this.reports = new DepartamentoCollection();
@@ -22,7 +22,7 @@ define(function (require) {
             model: Departamento,
 
 //            url: "http://localhost:3000/employees"
-            url: "/Hermes/api/departamento"
+            url: "api/departamento"
 
         }),
 

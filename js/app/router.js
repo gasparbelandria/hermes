@@ -1,11 +1,10 @@
+
 define(function (require) {
-
     "use strict";
-
     var $           = require('jquery'),
         Backbone    = require('backbone'),
-        ShellView   = require('app/views/Shell'),
-        HomeView    = require('app/views/Home'),
+        ShellView   = require('app/views/shell'),
+        HomeView    = require('app/views/home'),
         $body = $('body'),
         shellView = new ShellView({el: $body}).render(),
         $content = $("#content", shellView.el),
@@ -66,7 +65,7 @@ define(function (require) {
         },
 
         login: function() {
-            require(["app/views/Login"], function (LoginView) {
+            require(["app/views/login"], function (LoginView) {
                 var view = new LoginView({el: $content});
                 view.render();
                 shellView.selectMenuItem('login-menu');
@@ -101,7 +100,7 @@ define(function (require) {
           },
 
         muro: function() {
-             require(["app/views/Muro"], function (MuroView) {
+             require(["app/views/muro"], function (MuroView) {
                 var view = new MuroView({el: $content});
                 view.render();
                 shellView.selectMenuItem('muro-menu');
@@ -109,7 +108,7 @@ define(function (require) {
         },
 
         contact: function () {
-            require(["app/views/Contact"], function (ContactView) {
+            require(["app/views/contact"], function (ContactView) {
                 var view = new ContactView({el: $content});
                 view.render();
                 shellView.selectMenuItem('contact-menu');
@@ -145,7 +144,7 @@ define(function (require) {
         },
 
         analisis: function () {
-            require(["app/views/Analisis"], function (AnalisisView) {
+            require(["app/views/analisis"], function (AnalisisView) {
                 var view = new AnalisisView({el: $content});
                 view.render();
                 shellView.selectMenuItem('analisis-menu');
@@ -212,7 +211,7 @@ define(function (require) {
                 });
         },
         talento: function () {
-            require(["app/views/Talento", "app/models/compania"], function (TalentoView,models) {
+            require(["app/views/talento", "app/models/compania"], function (TalentoView,models) {
                 var compania = new models.Company();
                  compania.fetch({
                     success: function (data) {
@@ -226,7 +225,7 @@ define(function (require) {
             });
         },
         resultadoh:function (id) {
-            require(["app/views/ResultadoHbdi", "app/models/resultadohbdi"], function (ResultadohView, models) {
+            require(["app/views/resultadohbdi", "app/models/resultadohbdi"], function (ResultadohView, models) {
                 var resultadohbdi = new models.Resultadohbdi({id: id});
                 resultadohbdi.fetch({
                     success: function (data) {
@@ -239,7 +238,7 @@ define(function (require) {
         },
         
         resultadop:function (id) {
-           require(["app/views/ResultadoPapi", "app/models/resultadopapi"], function (ResultadopView, models) {
+           require(["app/views/resultadopapi", "app/models/resultadopapi"], function (ResultadopView, models) {
                 var resultadopapi = new models.Resultadopapi({id: id});
                 resultadopapi.fetch({
                     success: function (data) {
@@ -251,7 +250,7 @@ define(function (require) {
             });
         },
         departament: function (id) {
-            require(["app/views/Departamento", "app/models/departamento"], function (DepartamentoView, models) {
+            require(["app/views/departamento", "app/models/departamento"], function (DepartamentoView, models) {
                 var departamento = new models.Departamento({id: id});
                 departamento.fetch({
                     success: function (data) {
@@ -264,7 +263,7 @@ define(function (require) {
         },
 
         employeeDetails: function (id) {
-            require(["app/views/Employee", "app/models/employee"], function (EmployeeView, models) {
+            require(["app/views/employee", "app/models/employee"], function (EmployeeView, models) {
                 var employee = new models.Employee({id: id});
                 employee.fetch({
                     success: function (data) {

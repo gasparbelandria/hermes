@@ -5,7 +5,7 @@ define(function (require) {
     var $                    = require('jquery'),
         _                    = require('underscore'),
         Backbone             = require('backbone'),
-        tpl                  = require('text!tpl/Talento.html'),
+        tpl                  = require('text!tpl/talento.html'),
         sucursalesa          = [],
         departamentosa       = [],
         template = _.template(tpl);

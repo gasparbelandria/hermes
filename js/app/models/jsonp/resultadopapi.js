@@ -8,7 +8,7 @@ define(function (require) {
         Resultadopapi = Backbone.Model.extend({
 
 //            urlRoot: "http://localhost:3000/employees",
-            urlRoot: "/Hermes/api/resultadopapi",
+            urlRoot: "api/resultadopapi",
 
             initialize: function () {
                 this.resultadopapi = new ResultadopapiCollection();
@@ -22,7 +22,7 @@ define(function (require) {
             model: Resultadopapi,
 
 //            url: "http://localhost:3000/employees"
-            url: "/Hermes/api/resultadopapi"
+            url: "api/resultadopapi"
 
         }),
 

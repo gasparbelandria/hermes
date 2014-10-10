@@ -6,7 +6,7 @@ define(function (require) {
         _           = require('underscore'),
         Backbone    = require('backbone'),
         image       = require('croppic.min'),
-        tpl         = require('text!tpl/CrearUsuarios.html'),
+        tpl         = require('text!tpl/crearusuarios.html'),
         puestosarray=[],
         paisesarray =[],
         sucursalarray =[],

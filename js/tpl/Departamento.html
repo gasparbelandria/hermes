@@ -1,5 +1,6 @@
-<div id="details" class="span12">
+<div id="details" class="span8">
     <% _.each(usuarios, function(usuarios) { %>
+    <%if(usuarios.nombre){%>
     <a href="#employees/<%= usuarios.ID %>">
     <div class="span3 caja">
         <h3 class="nombre"><%= usuarios.nombre %> <%= usuarios.apellido %></h3>
@@ -8,5 +9,13 @@
         <br>
     </div>
     </a>
+    <%}%>
     <% }); %>
 </div>
+<div id="details" class="span3">
+    <div class="well">
+        <h3 class="modal-header">Estadisticas</h3>
+          <p>Empleados en el Departamento: <%= usuarios.cantidad %></p>
+          <p>Puestos en el Departamento: <%= usuarios.puesto %></p>
+    </div>
+</div>  

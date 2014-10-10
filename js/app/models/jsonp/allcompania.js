@@ -8,7 +8,7 @@ define(function (require) {
         AllCompania = Backbone.Model.extend({
 
 //            urlRoot: "http://localhost:3000/employees",
-            urlRoot: "/Hermes/api/allcompany",
+            urlRoot: "api/allcompany",
 
             initialize: function () {
                 this.allcompania = new AllCompaniaCollection();
@@ -22,7 +22,7 @@ define(function (require) {
             model: AllCompania,
 
 //            url: "http://localhost:3000/employees"
-            url: "/Hermes/api/allcompany"
+            url: "api/allcompany"
 
         }),
 
